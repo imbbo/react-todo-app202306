@@ -11,7 +11,7 @@ const Footer = () => {
         fontSize: '24px',
         background: '#38d9a9',
         color: '#fff',
-        marginTop: '50px'
+        marginTop: '500px'
     }}>copyright. 2023 happy new year~~!!</footer>
   );
 }
