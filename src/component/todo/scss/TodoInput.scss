@@ -29,14 +29,15 @@
     background: #38d9a9;
 
     &:hover {
-        background: #53fdca;
+        background: #63e6be;
     }
     &:active {
-        background: #1d7b5f;
+        background: #20c997;
     }
+
     &.open {
         background: #ff6b6b;
-        
+
         &:hover {
             background: #ff8787;
         }
@@ -44,6 +45,7 @@
             background: #fa5252;
         }
         transform: translate(-50%, 50%) rotate(45deg);
+
     }
 
     z-index: 5;
@@ -57,7 +59,7 @@
     left: 50%;
     bottom: 0;
     transform: translate(-50%, 50%);
-    
+
     color: white;
     border: none;
     outline: none;

@@ -5,6 +5,7 @@
     align-items: center;
 }
 
+
 .todo-list-item {
     display: flex;
     align-items: center;
@@ -23,12 +24,12 @@
         margin-right: 20px;
         cursor: pointer;
 
-       @include content-center;
+        @include content-center;
 
-       &.active {
+        &.active {
             border: 1px solid #38d9a9;
             color: #38d9a9;
-       }
+        }
     }
 
     .text {
@@ -40,7 +41,7 @@
             color: #919396;
             text-decoration: line-through;
         }
-    }
+    }   
 
     .remove {
         font-size: 28px;
@@ -52,8 +53,11 @@
         display: none;
 
         &:hover svg {
-            opacity: 0.8;
+            opacity: 0.6;
         }
     }
 
 }
+
+
+

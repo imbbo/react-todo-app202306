@@ -1,3 +1,4 @@
+
 // 브라우저에서 현재 클라이언트의 호스트 이름 얻어오기
 const clientHostName = window.location.hostname;
 
@@ -12,3 +13,4 @@ if(clientHostName === 'localhost') { //개발 중
 export const API_BASE_URL = backEndHostName;
 export const TODO = '/api/todos';
 export const USER = '/api/auth';
+

@@ -1,7 +1,8 @@
 import React from 'react'
 
 import './scss/TodoHeader.scss';
-const TodoHeader = ({count}) => {
+
+const TodoHeader = ({ count, promote }) => {
 
   const today = new Date();
 
@@ -13,13 +14,35 @@ const TodoHeader = ({count}) => {
 
   const dayName = today.toLocaleDateString('ko-KR', { weekday: 'long' });
 
+  const upgrade = () => {
+
+    if(window.confirm('돈 있음?')) {
+      promote();
+    }
+
+  }
+
+ // 등급에 따른 조건별 렌더링
+ const gradeView = () => {
+  const role = localStorage.getItem('USER_ROLE');
+  // console.log(role);
+  if (role === 'COMMON') {
+    return <span className='promote badge bg-warning' onClick={upgrade}>돈 안씀</span>
+  } else if(role === 'PREMIUM') {
+    return <span className='promote badge bg-danger' onClick={upgrade}>왕자님</span>
+  } else if(role === 'ADMIN') {
+    return <span className='promote badge bg-info'>관리자</span>
+  }
+}
+
   return (
     <header>
         <h1>{dateString}</h1>
         <div className='day'>{dayName}</div>
-        <div className='tasks-left'>할 일{count}개 남음</div>
+        <div className='tasks-left'>할 일 {count()}개 남음</div>
+        { gradeView() }
     </header>
-    );
+  )
 }
 
 export default TodoHeader;
