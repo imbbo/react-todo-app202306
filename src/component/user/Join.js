@@ -11,7 +11,7 @@ import './Join.scss';
 
 const Join = () => {
 
-    // useRef로 태그 참조하기
+    //useRef로 태그 참조하기
     const $fileTag = useRef();
 
     //리다이렉트 사용하기
@@ -20,7 +20,7 @@ const Join = () => {
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
-        if(isLoggedIn) {
+        if (isLoggedIn) {
             setOpen(true);
             setTimeout(() => {
                 redirection('/');
@@ -215,24 +215,25 @@ const Join = () => {
             flag
         });
 
-    }
+    };
 
     // 이미지 파일 상태변수
     const [imgFile, setImgFile] = useState(null);
 
-
     // 이미지파일을 선택했을 때 썸네일 뿌리기
     const showThumbnailHandler = e => {
-        // 첨부된 파일 정보
+        //첨부된 파일 정보
         const file = $fileTag.current.files[0];
-        
+
         const reader = new FileReader();
         reader.readAsDataURL(file);
 
         reader.onloadend = () => {
             setImgFile(reader.result);
         }
+
     };
+
 
     // 4개의 입력칸이 모두 검증에 통과했는지 여부를 검사
     const isValid = () => {
@@ -242,25 +243,25 @@ const Join = () => {
             if(!flag) return false;
         }
         return true;
-    }
+    };
 
     //회원 가입 처리 서버 요청
     const fetchSignUpPost = () => {
 
-        // Json을 Blob타입으로 변경 후 FormData에 넣기
+        // JSON을 Blob타입으로 변경 후 FormData에 넣기
         const userJsonBlob = new Blob(
             [JSON.stringify(userValue)],
             { type: 'application/json' }
         );
 
-        // FormData 객체를 활용해서.
         // 이미지파일과 회원정보 JSON을 하나로 묶어야 함
+        // FormData 객체를 활용해서.
         const userFormData = new FormData();
         userFormData.append('user', userJsonBlob);
         userFormData.append('profileImage', $fileTag.current.files[0]);
 
         fetch(API_BASE_URL, {
-            method: 'POST',
+            method: 'POST',          
             body: userFormData
         })
         .then(res => {
@@ -293,7 +294,7 @@ const Join = () => {
 
     return (
         <>
-            { !isLoggedIn &&
+            {!isLoggedIn && 
             <Container component="main" maxWidth="xs" style={{ margin: "200px auto" }}>
                 <form noValidate>
                     <Grid container spacing={2}>
@@ -303,16 +304,16 @@ const Join = () => {
                             </Typography>
                         </Grid>
 
-                    <Grid item xs={12}>
-                        <div className="thumbnail-box" onClick={() => $fileTag.current.click()}>
-                            <img
-                                // src={require("../../assets/img/image-add.png")}
-                                // src={imgFile || require("../../assets/img/image-add.png")}
-                                src={imgFile ? imgFile : require("../../assets/img/image-add.png")}
-                                alt="profile"
-                            />
-                        </div>
-                        <label className='signup-img-label' htmlFor='profile-img'>프로필 이미지 추가</label>
+                        <Grid item xs={12}>
+                            <div className="thumbnail-box" onClick={() => $fileTag.current.click()}>
+                                <img
+                                    // src={require("../../assets/img/image-add.png")}
+                                    src={imgFile || require("../../assets/img/image-add.png")}
+                                    alt="profile"
+
+                                />
+                            </div>
+                            <label className='signup-img-label' htmlFor='profile-img'>프로필 이미지 추가</label>
                             <input
                                 id='profile-img'
                                 type='file'
@@ -320,9 +321,9 @@ const Join = () => {
                                 accept='image/*'
                                 ref={$fileTag}
                                 onChange={showThumbnailHandler}
-                                
                             />
-                    </Grid>
+                        </Grid>
+
 
                         <Grid item xs={12}>
                             <TextField
@@ -416,10 +417,10 @@ const Join = () => {
                     </Grid>
                 </form>
             </Container>
-             }
-             <CustomSnackBar
+            }
+            <CustomSnackBar 
                 open={open}
-             />
+            />
         </>
       );
 
